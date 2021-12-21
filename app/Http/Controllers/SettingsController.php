@@ -114,17 +114,29 @@ class SettingsController extends Controller
 
     public function sendEmail(Request $request) {
         $toEmail    =   $request->emailAddress;
-        $data       =   array(
-            "message"    =>   "Hello Test"
-        );
-
+        
         $settingsData = BotSet::orderBy('id', 'desc')->first();
+
+        $data       =   array(
+            'subject' => $settingsData->subject,
+            "message"    => $settingsData->message
+        );
 
         if($settingsData){
 
-        
+            $data       =   array(
 
-            Mail::to($toEmail)->send(new DynamicEmail($settingsData));
+                'email'        => $settingsData->email,
+                'last_name'    => $settingsData->last_name,
+                'subject'     => $settingsData->subject,
+                'phone'        => $settingsData->phone,
+                'name'        => $settingsData->name,
+                "message"     => $settingsData->message
+            );
+    
+
+
+            Mail::to($toEmail)->send(new DynamicEmail($data));
 
         }else{
 
