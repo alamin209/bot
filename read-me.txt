@@ -1,0 +1,7 @@
+DB file name => bot.sql
+
+Bot Laravel Admin Access =>
+User => botadmin@gmail.com
+Pass => 12345678
+
+If it not work then change manually from db.
